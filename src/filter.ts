@@ -52,6 +52,7 @@ export function filter(context: any, el:any, filters:any) {
     return $filter.id;
   });
   mount(group, $def); // 挂载
+  
   el?.setAttribute('filter', filterIds.map((filterId: any) => `url(#${filterId})`).join(' '));
   mount(group, el); // 挂载
   return el; // 返回该元素
