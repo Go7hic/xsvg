@@ -22,7 +22,7 @@ const HomePage: React.FC = () => {
 
   useEffect(() => {
     // 创建渲染器
-    const renderer = createRenderer(600, 400);
+    const renderer = createRenderer(100, 100);
 
     // 绘制基本图形 
     const a = renderer.rect({
@@ -113,6 +113,39 @@ const HomePage: React.FC = () => {
     });
 
     mount(createDiv(), renderer.node());
+  }, [])
+
+  useEffect(() => {
+    // 创建渲染器
+    const renderer = createRenderer(100, 100);
+
+    // 绘制基本图形 
+    const a = renderer.rect({
+      x: 10, 
+      y: 10, 
+      width: 50, 
+      height: 50, 
+      fill: 'red', 
+    });
+
+    console.log(a)
+    renderer.filter(a, [{ name: 'sepia', params:[{ unit: '', value: 2}] }, { name: 'blur', params:[{ unit: '', value: 15}] }, { name: 'dropShadow', params: [{ unit: '', value: 0.8 }, { unit: '', value: 8 }, { unit: '', value: 10 }, {  formatted: 'red' }]}])
+    // // 坐标变换 
+    renderer.save(); 
+    document.body.appendChild(renderer.node())
+  }, [])
+
+  useEffect(() => {
+    const renderer = createRenderer(100, 100);
+    const a = renderer.ellipse({
+      cx: 100,
+      cy: 100,
+      rx: 100,
+      ry: 100,
+      fill: 'red', 
+    });
+    renderer.save(); 
+    document.body.appendChild(renderer.node())
   }, [])
   return (
     <div className="home-wrapper">

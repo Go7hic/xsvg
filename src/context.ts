@@ -1,7 +1,8 @@
 import { createSVGElement, mount } from './utils';
-
+let i = 0
 export function createContext(width: string, height: string) {
   // 创建画布 svg 节点，并且设置宽高
+  i++;
   const svg = createSVGElement('svg');
   svg.setAttribute('width', width);
   svg.setAttribute('height', height);
@@ -15,5 +16,6 @@ export function createContext(width: string, height: string) {
   return {
     node: svg,
     group: g,
+    idx: i,
   };
 }

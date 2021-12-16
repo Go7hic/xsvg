@@ -1,3 +1,5 @@
+import { ParsedElement } from "./filter";
+
 export function createSVGElement(type: string) {
   return document.createElementNS('http://www.w3.org/2000/svg', type);
 }
@@ -26,4 +28,64 @@ export function applyTransform(element: { getAttribute: (arg0: string) => string
   // 将新的变换指定到后面的变换后，这里需要字符串拼接
   const prefix = oldTransform ? `${oldTransform} ` : '';
   element.setAttribute('transform', `${prefix}${transform}`);
+}
+
+export function rad2deg(rad: number) {
+  return rad * (180 / Math.PI);
+}
+
+export function convertAngleUnit(valueWithUnit: ParsedElement) {
+  let deg = 0;
+  if (valueWithUnit.unit === 'deg') {
+    deg = Number(valueWithUnit.value);
+  } else if (valueWithUnit.unit === 'rad') {
+    deg = rad2deg(Number(valueWithUnit.value));
+  } else if (valueWithUnit.unit === 'turn') {
+    deg = 360 * Number(valueWithUnit.value);
+  }
+  return deg;
+}
+
+
+export function createFeColorMatrix($filter: SVGElement, matrix: number[]) {
+  const $feColorMatrix = createSVGElement('feColorMatrix');
+  $feColorMatrix.setAttribute('type', 'matrix');
+  $feColorMatrix.setAttribute('values', matrix.join(' '));
+  $filter.appendChild($feColorMatrix);
+}
+
+export function convertToAbsoluteValue(param: ParsedElement) {
+  return param.unit === '%' ? param.value / 100 : param.value;
+}
+export function createFeComponentTransfer(
+  $filter: SVGElement,
+  {
+    type,
+    slope,
+    intercept,
+    tableValues,
+  }: {
+    type: string;
+    slope?: number;
+    intercept?: number;
+    tableValues?: string;
+  },
+) {
+  const $feComponentTransfer = createSVGElement('feComponentTransfer');
+  [createSVGElement('feFuncR'), createSVGElement('feFuncG'), createSVGElement('feFuncB')].forEach(
+    ($feFunc) => {
+      $feFunc.setAttribute('type', type);
+
+      if (type === 'table') {
+        $feFunc.setAttribute('tableValues', `${tableValues}`);
+      } else {
+        $feFunc.setAttribute('slope', `${slope}`);
+        $feFunc.setAttribute('intercept', `${intercept}`);
+      }
+
+      $feComponentTransfer.appendChild($feFunc);
+    },
+  );
+
+  $filter.appendChild($feComponentTransfer);
 }

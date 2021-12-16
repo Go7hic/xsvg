@@ -97,3 +97,13 @@ export function ring(context: { node: SVGElement; group: SVGElement; }, attribut
   });
   return [innerStroke, ring, outerStroke];
 }
+
+/**
+ * 椭圆
+ * @param context 
+ * @param attributes 
+ * @returns 
+ */
+export function ellipse(context: { node: SVGElement | undefined; group: any; }, attributes: { [s: string]: unknown; } | ArrayLike<unknown>) {
+  return shape('ellipse', context, attributes);
+}

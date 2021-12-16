@@ -1,7 +1,7 @@
 import { createContext } from './context';
 import { filter } from './filter';
 import {
-  line, circle, text, rect, path, ring,
+  line, circle, text, rect, path, ring, ellipse,
 } from './shape';
 import {
   restore, save, scale, translate, rotate, skewX, skewY
@@ -17,6 +17,7 @@ export function createRenderer(width: any, height: any) {
     rect: (options: any) => rect(context, options),
     path: (options: any) => path(context, options),
     ring: (options: any) => ring(context, options),
+    ellipse: (options:any) => ellipse(context, options),
     restore: () => restore(context),
     save: () => save(context),
     scale: (x: any, y: any) => scale(context, x, y),
