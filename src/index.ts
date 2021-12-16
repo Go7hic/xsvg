@@ -1,5 +1,6 @@
 import { createContext } from './context';
 import { filter } from './filter';
+import { gradient } from './gradient';
 import {
   line, circle, text, rect, path, ring, ellipse,
 } from './shape';
@@ -27,6 +28,7 @@ export function createRenderer(width: any, height: any) {
     skewY: (y: number) => skewY(context, y),
     node: () => context.node,
     group: () => context.group,
-    filter: (el:any, params:any) => filter(context, el, params)
+    filter: (el:any, params:any) => filter(context, el, params),
+    gradient: (el:any, params:any) => gradient(context, el, params)
   };
 }

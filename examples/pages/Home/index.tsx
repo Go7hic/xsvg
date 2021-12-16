@@ -49,7 +49,7 @@ const HomePage: React.FC = () => {
   }, [])
     
   useEffect(() => {
-    const renderer = createRenderer(600, 400);
+    const renderer = createRenderer(100, 100);
     const ring = renderer.ring({
       cx: 100,
       cy: 100,
@@ -65,7 +65,7 @@ const HomePage: React.FC = () => {
   }, [])
 
   useEffect(() => {
-    const renderer = createRenderer(600, 400);
+    const renderer = createRenderer(200, 200);
 
     renderer.save();
     renderer.translate(200, 100);
@@ -89,7 +89,7 @@ const HomePage: React.FC = () => {
     mount(createDiv(), renderer.node());
   }, [])
   useEffect(() => {
-    const renderer = createRenderer(600, 400);
+    const renderer = createRenderer(200, 200);
 
     // renderer.save();
     // renderer.translate(200, 100);
@@ -134,6 +134,20 @@ const HomePage: React.FC = () => {
     renderer.save(); 
     document.body.appendChild(renderer.node())
   }, [])
+
+  useEffect(() => {
+    const renderer = createRenderer(100, 100);
+    const a = renderer.rect({
+      x: 0,
+      y: 0,
+      width: 50,
+      height: 50,
+    });
+    renderer.gradient(a, { type: 'line', attributes: {}, stops: [{offset: '0%', stopColor: 'red'}, {offset: '50%', stopColor: 'black', stopOpacity: 0}, {offset: '100%', stopColor: 'blue'}]})
+    renderer.save(); 
+    document.body.appendChild(renderer.node())
+  }, [])
+
 
   useEffect(() => {
     const renderer = createRenderer(100, 100);
