@@ -143,7 +143,7 @@ const HomePage: React.FC = () => {
       width: 50,
       height: 50,
     });
-    renderer.gradient(a, { type: 'line', attributes: {}, stops: [{offset: '0%', stopColor: 'red'}, {offset: '50%', stopColor: 'black', stopOpacity: 0}, {offset: '100%', stopColor: 'blue'}]})
+    renderer.gradient(a, { type: 'line', stops: [{offset: '0%', stopColor: 'red'}, {offset: '50%', stopColor: 'black', stopOpacity: 0}, {offset: '100%', stopColor: 'blue'}]})
     renderer.save(); 
     document.body.appendChild(renderer.node())
   }, [])

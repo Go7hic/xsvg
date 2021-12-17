@@ -28,7 +28,7 @@ const filterMap: Record<string, (f:any, p:any) => void> = {
 
 /**
  * 滤镜
- * filter 渲染： svg -> rect(shape) -> defs -> filter -> blur
+ * filter 渲染： svg -> rect(shape) | defs -> filter -> blur
  * 
  * @param context 
  * @param filters 

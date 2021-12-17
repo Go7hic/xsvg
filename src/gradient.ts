@@ -4,7 +4,7 @@
 import { applyAttributes, createSVGElement, mount } from "./utils";
 const GRADIENT_PREFIX = 'g-gradient-';
 /**
- * svg -> defs -> linearGradient -> stop
+ * svg -> defs | shape -> linearGradient -> stop
  * @param context 
  * @param el 
  * @param option 
@@ -14,17 +14,17 @@ export function gradient(context:any, el:any, option:any) {
   const $def = createSVGElement('defs') as SVGDefsElement; // defs
   const gradientId = `${GRADIENT_PREFIX}${idx}`;
   if (option.type === 'line') {
-    // createLineGradient()
+    
     const $line = createSVGElement('linearGradient') as SVGLinearGradientElement; // linearGradient
-    applyAttributes($line, option.attributes); // 设置属性
+    option.attributes && applyAttributes($line, option.attributes); // 设置属性
     $line.id = gradientId
     option.stops.map((item:any) =>  createStops($line, item))
     $def.appendChild($line);
   }
   if (option.type === 'radial') {
-    // createRadialGradient()
-    const $radial = createSVGElement('radialGradient') as SVGRadialGradientElement; // linearGradient
-    applyAttributes($radial, option.attributes); // 设置属性
+  
+    const $radial = createSVGElement('radialGradient') as SVGRadialGradientElement; // radialGradient
+    option.attributes && applyAttributes($radial, option.attributes); // 设置属性
     $radial.id = gradientId
     option.stops.map((item:any) =>  createStops($radial, item))
     $def.appendChild($radial);
