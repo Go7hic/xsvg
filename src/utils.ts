@@ -23,7 +23,7 @@ export function applyAttributes(element: SVGElement, attributes: any) {
   }
 }
 
-export function applyTransform(element: { getAttribute: (arg0: string) => string; setAttribute: (arg0: string, arg1: string) => void; }, transform: string) {
+export function applyTransform(element: SVGElement, transform: string) {
   const oldTransform = element.getAttribute('transform') || '';
   // 将新的变换指定到后面的变换后，这里需要字符串拼接
   const prefix = oldTransform ? `${oldTransform} ` : '';

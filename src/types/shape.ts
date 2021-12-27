@@ -1,37 +1,51 @@
-export interface CommonAttributes {
-  [s: string]: unknown;
-}
-export interface RectAttr extends CommonAttributes {
+import { SVGAttributes } from 'react';
+
+export interface RectAttr extends SVGAttributes<any> {
   x?: string | number;
   y?: string | number;
   width?: string | number;
   height?: string | number;
 }
 
-export interface LineAttr extends CommonAttributes {
+export interface LineAttr extends  SVGAttributes<any> {
   x1?:  string | number;
   x2?: string | number;
   y1?: string | number;
   y2?: string | number;
 }
 
-export interface EllipseAttr extends CommonAttributes {
+export interface EllipseAttr extends SVGAttributes<any> {
   cx?: string | number;
   cy?: string | number;
   rx?: string | number;
   ry?: string | number;
 }
 
-export interface CircleAttr extends CommonAttributes {
+export interface CircleAttr extends SVGAttributes<any> {
   cx?: string | number;
   cy?: string | number;
   r?: string | number;
 }
 
-export interface TextAttr extends CommonAttributes {
+export interface TextOptions extends SVGAttributes<any> {
   text: any; 
+  // attr
+  x?: number;
+  y?: number;
+  dx?: string;
+  dy?: string;
+  textAnchor?: string;
+  rotate?: string;
+  textLength?: number | string;
+  lengthAdjust?: string; 
 }
 
-export interface PathAttr extends CommonAttributes {
-  text: any; 
+
+export type PathAttr = Omit<SVGAttributes<any>, 'd>'> & {
+  d?: string[];
+}
+
+export interface RinOptions extends SVGAttributes<any> {
+  r1?: number;
+  r2?: number;
 }

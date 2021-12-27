@@ -34,11 +34,11 @@ const filterMap: Record<string, (f:any, p:any) => void> = {
  * @param filters 
  */
 
-export function filter(context: any, el:any, filters:any) {
+export function filter(context: any, el:any, filters:any[]) {
   const { group, node, idx } = context; // 挂载元素  svg
   
   const $def = createSVGElement('defs') as SVGDefsElement; // defs
-  console.log(idx)
+  
   const filterIds = filters.map(({ name, params }: {name: any, params: any}, i: number) => {
     const filterName = `${FILTER_PREFIX}${idx}-${i}`;
     const $filter = createSVGElement('filter') as SVGFilterElement; // filter
