@@ -29,9 +29,9 @@ export interface CircleAttr extends CommonAttributes {
 }
 
 export interface TextAttr extends CommonAttributes {
-  x
-  y
-  dx
-  dy
-  
+  text: any; 
+}
+
+export interface PathAttr extends CommonAttributes {
+  text: any; 
 }

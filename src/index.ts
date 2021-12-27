@@ -7,16 +7,17 @@ import {
 import {
   restore, save, scale, translate, rotate, skewX, skewY
 } from './transform';
+import { CircleAttr, LineAttr, RectAttr, TextAttr } from './types/shape';
 
 
 export function createRenderer(width: any, height: any) {
   const context = createContext(width, height);
   return {
-    line: (options: any) => line(context, options), 
-    circle: (options: any) => circle(context, options),
-    text: (options: any) => text(context, options),
-    rect: (options: any) => rect(context, options),
-    path: (options: any) => path(context, options),
+    line: (options: LineAttr) => line(context, options), 
+    circle: (options: CircleAttr) => circle(context, options),
+    text: (options: TextAttr) => text(context, options),
+    rect: (options: RectAttr) => rect(context, options),
+    path: (options: PathAttr) => path(context, options),
     ring: (options: any) => ring(context, options),
     ellipse: (options:any) => ellipse(context, options),
     restore: () => restore(context),

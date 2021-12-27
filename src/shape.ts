@@ -1,3 +1,4 @@
+import { LineAttr, TextAttr } from './types/shape';
 import { applyAttributes, createSVGElement, mount } from './utils';
 
 function shape(type: string, context: { node?: SVGElement; group: any; }, attributes: { [s: string]: unknown; } | ArrayLike<unknown>) {
@@ -11,7 +12,7 @@ function shape(type: string, context: { node?: SVGElement; group: any; }, attrib
 }
 
 
-export function line(context: { node: SVGElement | undefined; group: any; }, attributes: { [s: string]: unknown; } | ArrayLike<unknown>) {
+export function line(context: { node: SVGElement | undefined; group: any; }, attributes: LineAttr) {
   return shape('line', context, attributes);
 }
 
@@ -40,7 +41,7 @@ export function circle(context: { node: SVGElement | undefined; group: any; }, a
 // text 元素是将展示内容放在标签内部，而不是作为标签的属性
 // <text text='content' /> ❌
 // <text>content</text> ✅
-export function text(context: { node: SVGElement; group: SVGElement; }, attributes: { [x: string]: any; text: any; }) {
+export function text(context: { node: SVGElement; group: SVGElement; }, attributes: TextAttr) {
   const { text, ...rest } = attributes;
   const textElement = shape('text', context, rest);
   textElement.textContent = text; // 通过 textContent 设置标签内的内容
