@@ -5,38 +5,40 @@ a lightweight svg render library
 
 ### API
 
-line: (options: any) => line(context, options), 
-
-circle: (options: any) => circle(context, options),
-
-text: (options: any) => text(context, options),
-
-rect: (options: any) => rect(context, options),
-
-path: (options: any) => path(context, options),
-
-ring: (options: any) => ring(context, options),
-
-ellipse: (options:any) => ellipse(context, options),
-
+```
+// 直线
+line: (options: LineAttr) => line(context, options), 
+// 圆
+circle: (options: CircleAttr) => circle(context, options),
+// 文字
+text: (options: TextOptions) => text(context, options),
+// 矩形
+rect: (options: RectAttr) => rect(context, options),
+// 路径
+path: (options: PathAttr) => path(context, options),
+// 环形
+ring: (options: RinOptions) => ring(context, options),
+// 椭圆
+ellipse: (options:SVGAttributes<any>) => ellipse(context, options),
+// 重置画布
 restore: () => restore(context),
-
+// 保存画布
 save: () => save(context),
-
-scale: (x: any, y: any) => scale(context, x, y),
-
-rotate: (theta: any) => rotate(context, theta),
-
-translate: (x: any, y: any) => translate(context, x ,y),
-
+// 伸缩
+scale: (x:number | string , y: number | string) => scale(context, x, y),
+// 旋转
+rotate: (theta: number | string) => rotate(context, theta),
+// 平移
+translate: (x: number | string, y: number | string) => translate(context, x ,y),
+//斜切
 skewX: (x: number) => skewX(context, x),
-
 skewY: (y: number) => skewY(context, y),
 
-filter: (el:any, params:any) => filter(context, el, params),
-
+// 滤镜
+filter: (el:any, params:any[]) => filter(context, el, params),
+// 渐变
 gradient: (el:any, params:any) => gradient(context, el, params)
 
-group: () => context.group,
-
 node: () => context.node,
+group: () => context.group,
+```
